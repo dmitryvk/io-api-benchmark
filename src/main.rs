@@ -25,18 +25,30 @@ fn main() {
             IoSequence::Random,
             // IoSequence::Sequential,
         ] {
-            let duration = measure_write_file(settings.file_size, m, IoSequence::Sequential);
+            let path = Path::new("target").join("test_file");
+            let write_duration =
+                measure_write_file(&path, settings.file_size, m, IoSequence::Sequential);
             let write_tput_mbps =
-                settings.file_size as f64 / 1024.0 / 1024.0 / duration.as_secs_f64();
+                settings.file_size as f64 / 1024.0 / 1024.0 / write_duration.as_secs_f64();
             println!(
-                "{m:?} {sequence:?} => {d:.3} sec {write_tput_mbps:.2} MiB/sec",
-                d = duration.as_secs_f64()
+                "write {m:?} {sequence:?} => {d:.3} sec {write_tput_mbps:.2} MiB/sec",
+                d = write_duration.as_secs_f64()
+            );
+            let read_duration =
+                measure_read_file(&path, settings.file_size, m, IoSequence::Sequential);
+            let read_tput_mbps =
+                settings.file_size as f64 / 1024.0 / 1024.0 / read_duration.as_secs_f64();
+            println!(
+                "read {m:?} {sequence:?} => {d:.3} sec {read_tput_mbps:.2} MiB/sec",
+                d = read_duration.as_secs_f64()
             );
             report_items.push(ReportItem {
                 method: m.clone(),
                 sequence,
                 write_tput_mbps,
+                read_tput_mbps,
             });
+            remove_file_maybe(&path);
         }
     }
 
@@ -48,13 +60,13 @@ fn main() {
 }
 
 fn measure_write_file(
+    path: &Path,
     file_size: u64,
     io_method: &IoMethodSettings,
     sequence: IoSequence,
 ) -> Duration {
-    let path = Path::new("target").join("test_file");
-    remove_file_maybe(&path);
-    let file = File::create_new(&path).unwrap();
+    remove_file_maybe(path);
+    let file = File::create_new(path).unwrap();
     file.set_len(file_size).unwrap();
     file.sync_all().unwrap();
     drop(file);
@@ -62,21 +74,43 @@ fn measure_write_file(
     let mut iters = 0;
     while iters <= 10 && start.elapsed() < Duration::from_secs(3) {
         match io_method {
-            IoMethodSettings::Buffered(buffered) => buffered.write_file(&path, file_size, sequence),
-            IoMethodSettings::Direct(direct) => direct.write_file(&path, file_size, sequence),
+            IoMethodSettings::Buffered(buffered) => buffered.write_file(path, file_size, sequence),
+            IoMethodSettings::Direct(direct) => direct.write_file(path, file_size, sequence),
             IoMethodSettings::DirectAsync(direct_async) => {
-                direct_async.write_file(&path, file_size, sequence)
+                direct_async.write_file(path, file_size, sequence)
             }
             IoMethodSettings::DirectUring(_direct_uring) => todo!(),
         }
         iters += 1;
     }
-    let duration = start.elapsed() / iters;
-    remove_file_maybe(&path);
-    duration
+
+    start.elapsed() / iters
 }
 
-fn remove_file_maybe(path: &std::path::PathBuf) {
+fn measure_read_file(
+    path: &Path,
+    file_size: u64,
+    io_method: &IoMethodSettings,
+    sequence: IoSequence,
+) -> Duration {
+    let start = Instant::now();
+    let mut iters = 0;
+    while iters <= 10 && start.elapsed() < Duration::from_secs(3) {
+        match io_method {
+            IoMethodSettings::Buffered(buffered) => buffered.read_file(path, file_size, sequence),
+            IoMethodSettings::Direct(direct) => direct.read_file(path, file_size, sequence),
+            IoMethodSettings::DirectAsync(direct_async) => {
+                direct_async.read_file(path, file_size, sequence)
+            }
+            IoMethodSettings::DirectUring(_direct_uring) => todo!(),
+        }
+        iters += 1;
+    }
+
+    start.elapsed() / iters
+}
+
+fn remove_file_maybe(path: &Path) {
     match std::fs::remove_file(path) {
         Ok(()) => {}
         Err(e) if e.kind() == ErrorKind::NotFound => {}
@@ -92,8 +126,7 @@ pub enum IoSequence {
 
 pub trait IoMethod {
     fn write_file(&self, path: &Path, file_size: u64, sequence: IoSequence);
-    // TODO: `echo 3 > /proc/sys/vm/drop_caches`
-    // fn read_file(&self, path: &Path, sequence: IoSequence);
+    fn read_file(&self, path: &Path, file_size: u64, sequence: IoSequence);
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -101,4 +134,5 @@ struct ReportItem {
     method: IoMethodSettings,
     sequence: IoSequence,
     write_tput_mbps: f64,
+    read_tput_mbps: f64,
 }

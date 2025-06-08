@@ -40,6 +40,9 @@ impl IoMethod for DirectAsync {
     fn write_file(&self, path: &std::path::Path, file_size: u64, sequence: IoSequence) {
         TOKIO_RUNTIME.block_on(self.write_file_inner(path, file_size, sequence))
     }
+    fn read_file(&self, path: &std::path::Path, file_size: u64, sequence: IoSequence) {
+        TOKIO_RUNTIME.block_on(self.read_file_inner(path, file_size, sequence))
+    }
 }
 
 impl DirectAsync {
@@ -79,6 +82,39 @@ impl DirectAsync {
                     let written = rc.unwrap();
                     assert_eq!(written as u32, self.block_size);
                 }
+            })
+            .buffer_unordered(self.concurrency as usize)
+            .collect()
+            .await;
+
+        file.flush().unwrap();
+        file.sync_all().unwrap();
+    }
+
+    async fn read_file_inner(&self, path: &std::path::Path, file_size: u64, sequence: IoSequence) {
+        assert_eq!(file_size % self.block_size as u64, 0);
+        let num_pages = file_size / self.block_size as u64;
+        let mut file = OpenOptions::new()
+            .write(true)
+            .read(true)
+            .custom_flags(O_DIRECT)
+            .open(path)
+            .unwrap();
+        let fd = file.as_raw_fd();
+
+        let _results: Vec<()> = futures::stream::iter(access_seq(sequence, num_pages))
+            .map(|page_idx| async move {
+                let block_size = self.block_size;
+                let offset = page_idx * self.block_size as u64;
+                let (rc, _buf) = {
+                    AIO_MGR
+                        .lock()
+                        .unwrap()
+                        .read(fd, offset, block_size as usize, None)
+                }
+                .await;
+                let written = rc.unwrap();
+                assert_eq!(written as u32, self.block_size);
             })
             .buffer_unordered(self.concurrency as usize)
             .collect()
