@@ -7,10 +7,7 @@ use std::{
 
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    bench_settings::{IoMethodSettings, read_bench_settings},
-    buffered_io::Buffered,
-};
+use crate::bench_settings::{IoMethodSettings, read_bench_settings};
 
 mod bench_settings;
 mod buffered_io;
@@ -52,8 +49,8 @@ fn measure_write_file(
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.write_file(&path, file_size, sequence),
             IoMethodSettings::Direct(direct) => direct.write_file(&path, file_size, sequence),
-            IoMethodSettings::DirectAsync(direct_async) => todo!(),
-            IoMethodSettings::DirectUring(direct_uring) => todo!(),
+            IoMethodSettings::DirectAsync(_direct_async) => todo!(),
+            IoMethodSettings::DirectUring(_direct_uring) => todo!(),
         }
         iters += 1;
     }

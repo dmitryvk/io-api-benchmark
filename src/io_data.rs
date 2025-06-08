@@ -1,7 +1,4 @@
-use rand::{
-    RngCore, rng,
-    seq::{self, SliceRandom},
-};
+use rand::{RngCore, rng, seq::SliceRandom};
 
 use crate::IoSequence;
 
