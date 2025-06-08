@@ -11,25 +11,40 @@ use crate::bench_settings::{IoMethodSettings, read_bench_settings};
 
 mod bench_settings;
 mod buffered_io;
+mod direct_async_io;
 mod direct_io;
 mod io_data;
 
 fn main() {
     let settings = read_bench_settings();
     println!("{settings:?}");
+    let mut report_items = Vec::<ReportItem>::new();
     for m in &settings.methods {
         for sequence in [
             IoSequence::Sequential,
             IoSequence::Random,
-            IoSequence::Sequential,
+            // IoSequence::Sequential,
         ] {
             let duration = measure_write_file(settings.file_size, m, IoSequence::Sequential);
+            let write_tput_mbps =
+                settings.file_size as f64 / 1024.0 / 1024.0 / duration.as_secs_f64();
             println!(
-                "{m:?} {sequence:?} => {d:.3} sec",
+                "{m:?} {sequence:?} => {d:.3} sec {write_tput_mbps:.2} MiB/sec",
                 d = duration.as_secs_f64()
             );
+            report_items.push(ReportItem {
+                method: m.clone(),
+                sequence,
+                write_tput_mbps,
+            });
         }
     }
+
+    std::fs::write(
+        "target/report.json",
+        serde_json::to_string(&report_items).unwrap(),
+    )
+    .unwrap();
 }
 
 fn measure_write_file(
@@ -49,7 +64,9 @@ fn measure_write_file(
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.write_file(&path, file_size, sequence),
             IoMethodSettings::Direct(direct) => direct.write_file(&path, file_size, sequence),
-            IoMethodSettings::DirectAsync(_direct_async) => todo!(),
+            IoMethodSettings::DirectAsync(direct_async) => {
+                direct_async.write_file(&path, file_size, sequence)
+            }
             IoMethodSettings::DirectUring(_direct_uring) => todo!(),
         }
         iters += 1;
@@ -77,4 +94,11 @@ pub trait IoMethod {
     fn write_file(&self, path: &Path, file_size: u64, sequence: IoSequence);
     // TODO: `echo 3 > /proc/sys/vm/drop_caches`
     // fn read_file(&self, path: &Path, sequence: IoSequence);
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct ReportItem {
+    method: IoMethodSettings,
+    sequence: IoSequence,
+    write_tput_mbps: f64,
 }

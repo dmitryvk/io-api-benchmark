@@ -1,0 +1,17 @@
+{
+    "file_size": 134217728,
+    "methods": [
+        { "type": "buffered", "block_size": 512 },
+        { "type": "buffered", "block_size": 4096 },
+        { "type": "buffered", "block_size": 16384 },
+        { "type": "direct_async", "block_size": 16384 },
+        { "type": "direct_async", "block_size": 512, "concurrency": 32 },
+        { "type": "direct_async", "block_size": 512, "concurrency": 128 },
+        { "type": "direct_async", "block_size": 1024, "concurrency": 32 },
+        { "type": "direct_async", "block_size": 1024, "concurrency": 128 },
+        { "type": "direct_async", "block_size": 4096, "concurrency": 128 },
+        { "type": "direct_async", "block_size": 4096, "concurrency": 32 },
+        { "type": "direct_async", "block_size": 16384, "concurrency": 32 },
+        { "type": "direct_async", "block_size": 16384, "concurrency": 128 }
+    ]
+}
