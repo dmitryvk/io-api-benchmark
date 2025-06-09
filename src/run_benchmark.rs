@@ -78,6 +78,9 @@ fn measure_write_file(
     while iters <= 10 && start.elapsed() < Duration::from_secs(3) {
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.write_file(path, file_size, sequence),
+            IoMethodSettings::BufferedUring(buffered_uring) => {
+                buffered_uring.write_file(path, file_size, sequence)
+            }
             IoMethodSettings::Direct(direct) => direct.write_file(path, file_size, sequence),
             IoMethodSettings::DirectAsync(direct_async) => {
                 direct_async.write_file(path, file_size, sequence)
@@ -105,6 +108,9 @@ fn measure_read_file(
         let start = Instant::now();
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.read_file(path, file_size, sequence),
+            IoMethodSettings::BufferedUring(buffered_uring) => {
+                buffered_uring.read_file(path, file_size, sequence)
+            }
             IoMethodSettings::Direct(direct) => direct.read_file(path, file_size, sequence),
             IoMethodSettings::DirectAsync(direct_async) => {
                 direct_async.read_file(path, file_size, sequence)

@@ -7,6 +7,7 @@ use crate::{bench_settings::IoMethodSettings, report::ReportCommand, run_benchma
 
 mod bench_settings;
 mod buffered_io;
+mod buffered_io_uring;
 mod direct_async_io;
 mod direct_io;
 mod direct_io_uring;
@@ -35,7 +36,7 @@ enum Command {
     Report(ReportCommand),
 }
 
-#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum IoSequence {
     Sequential,
     Random,
