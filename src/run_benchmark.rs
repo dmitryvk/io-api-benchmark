@@ -82,7 +82,9 @@ fn measure_write_file(
             IoMethodSettings::DirectAsync(direct_async) => {
                 direct_async.write_file(path, file_size, sequence)
             }
-            IoMethodSettings::DirectUring(_direct_uring) => todo!(),
+            IoMethodSettings::DirectUring(direct_uring) => {
+                direct_uring.write_file(path, file_size, sequence)
+            }
         }
         iters += 1;
     }
@@ -96,22 +98,26 @@ fn measure_read_file(
     io_method: &IoMethodSettings,
     sequence: IoSequence,
 ) -> Duration {
-    let start = Instant::now();
     let mut iters = 0;
-    while iters <= 10 && start.elapsed() < Duration::from_secs(3) {
+    let mut duration = Duration::ZERO;
+    while iters <= 10 && duration < Duration::from_secs(3) {
         drop_caches();
+        let start = Instant::now();
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.read_file(path, file_size, sequence),
             IoMethodSettings::Direct(direct) => direct.read_file(path, file_size, sequence),
             IoMethodSettings::DirectAsync(direct_async) => {
                 direct_async.read_file(path, file_size, sequence)
             }
-            IoMethodSettings::DirectUring(_direct_uring) => todo!(),
+            IoMethodSettings::DirectUring(direct_uring) => {
+                direct_uring.read_file(path, file_size, sequence);
+            }
         }
+        duration += start.elapsed();
         iters += 1;
     }
 
-    start.elapsed() / iters
+    duration / iters
 }
 
 fn drop_caches() {

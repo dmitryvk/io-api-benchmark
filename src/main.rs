@@ -9,6 +9,7 @@ mod bench_settings;
 mod buffered_io;
 mod direct_async_io;
 mod direct_io;
+mod direct_io_uring;
 mod io_data;
 
 mod report;

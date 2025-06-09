@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     buffered_io::Buffered, direct_async_io::DirectAsync, direct_io::Direct,
-    run_benchmark::RunCommand,
+    direct_io_uring::DirectUring, run_benchmark::RunCommand,
 };
 
 pub fn read_bench_settings(args: &RunCommand) -> BenchSettings {
@@ -23,10 +23,4 @@ pub enum IoMethodSettings {
     Direct(Direct),
     DirectAsync(DirectAsync),
     DirectUring(DirectUring),
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct DirectUring {
-    pub block_size: u32,
-    pub concurrency: u32,
 }

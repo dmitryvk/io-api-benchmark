@@ -1,14 +1,24 @@
 {
     "file_size": 134217728,
     "methods": [
+        { "type": "buffered", "block_size": 1024 },
         { "type": "buffered", "block_size": 4096 },
         { "type": "buffered", "block_size": 16384 },
         { "type": "buffered", "block_size": 32768 },
         { "type": "buffered", "block_size": 65536 },
         { "type": "direct", "block_size": 65536 },
+        { "type": "direct_async", "block_size": 1024, "concurrency": 128 },
         { "type": "direct_async", "block_size": 4096, "concurrency": 128 },
         { "type": "direct_async", "block_size": 16384, "concurrency": 128 },
         { "type": "direct_async", "block_size": 32768, "concurrency": 128 },
-        { "type": "direct_async", "block_size": 65536, "concurrency": 128 }
+        { "type": "direct_async", "block_size": 65536, "concurrency": 128 },
+        { "type": "direct_uring", "block_size": 1024, "concurrency": 1 },
+        { "type": "direct_uring", "block_size": 1024, "concurrency": 128 },
+        { "type": "direct_uring", "block_size": 4096, "concurrency": 1 },
+        { "type": "direct_uring", "block_size": 4096, "concurrency": 128 },
+        { "type": "direct_uring", "block_size": 16384, "concurrency": 1 },
+        { "type": "direct_uring", "block_size": 16384, "concurrency": 128 },
+        { "type": "direct_uring", "block_size": 65536, "concurrency": 1 },
+        { "type": "direct_uring", "block_size": 65536, "concurrency": 128 }
     ]
 }

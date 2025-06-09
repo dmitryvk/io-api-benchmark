@@ -2,6 +2,7 @@
     "file_size": 134217728,
     "methods": [
         { "type": "buffered", "block_size": 65536 },
-        { "type": "direct_async", "block_size": 65536, "concurrency": 128 }
+        { "type": "direct_async", "block_size": 65536, "concurrency": 128 },
+        { "type": "direct_uring", "block_size": 65536, "concurrency": 128 }
     ]
 }
