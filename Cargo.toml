@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+clap = { version = "4.5.39", features = ["derive"] }
 crc = "3.3.0"
 futures = "0.3.31"
 io-uring = "0.7.7"

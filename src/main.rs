@@ -2,6 +2,7 @@ use std::{
     fs::File,
     io::ErrorKind,
     path::Path,
+    process::Command,
     time::{Duration, Instant},
 };
 
@@ -17,8 +18,8 @@ mod io_data;
 
 fn main() {
     let settings = read_bench_settings();
-    println!("{settings:?}");
     let mut report_items = Vec::<ReportItem>::new();
+    drop_caches();
     for m in &settings.methods {
         for sequence in [
             IoSequence::Sequential,
@@ -96,6 +97,7 @@ fn measure_read_file(
     let start = Instant::now();
     let mut iters = 0;
     while iters <= 10 && start.elapsed() < Duration::from_secs(3) {
+        drop_caches();
         match io_method {
             IoMethodSettings::Buffered(buffered) => buffered.read_file(path, file_size, sequence),
             IoMethodSettings::Direct(direct) => direct.read_file(path, file_size, sequence),
@@ -108,6 +110,13 @@ fn measure_read_file(
     }
 
     start.elapsed() / iters
+}
+
+fn drop_caches() {
+    let rc = Command::new("sudo")
+    .args(["sh", "-c", "sync && (echo 3 > /proc/sys/vm/drop_caches) && sync && (echo 3 > /proc/sys/vm/drop_caches)"])
+    .spawn().unwrap().wait().unwrap();
+    assert!(rc.success());
 }
 
 fn remove_file_maybe(path: &Path) {
