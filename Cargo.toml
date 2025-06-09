@@ -10,7 +10,7 @@ float-ord = "0.3.2"
 futures = "0.3.31"
 io-uring = "0.7.7"
 itertools = "0.14.0"
-libaio-futures = "0.2.3"
+libaio-futures = { version = "0.2.3", git = "https://github.com/dmitryvk/libaio-futures.git" }
 libc = "0.2.172"
 minijinja = "2.10.2"
 rand = "0.9.1"

@@ -355,8 +355,7 @@ checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
 [[package]]
 name = "libaio-futures"
 version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8648b25a1afd327cfdc88c7c8648a87a609601a3e139e4da324714d2c0cd255"
+source = "git+https://github.com/dmitryvk/libaio-futures.git#3d1b266b9f828eee9ddc206e5599461297e0a0c3"
 dependencies = [
  "crossbeam-channel",
  "libc",

@@ -13,7 +13,7 @@ use tokio::runtime::Runtime;
 
 use crate::{
     IoMethod, IoSequence,
-    io_data::{access_seq, buf_data},
+    io_data::{access_seq, aligned_vec, buf_data},
 };
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -71,7 +71,9 @@ impl DirectAsync {
                         if let Some(buf) = pool.pop() {
                             buf
                         } else {
-                            (*template_buf).clone().into_boxed_slice()
+                            let mut buf = aligned_vec(template_buf.len());
+                            buf.copy_from_slice(&template_buf);
+                            buf.into_boxed_slice()
                         }
                     };
                     let (rc, buf) = { AIO_MGR.lock().unwrap().write(fd, offset, buf, None) }.await;
@@ -107,10 +109,12 @@ impl DirectAsync {
                 let block_size = self.block_size;
                 let offset = page_idx * self.block_size as u64;
                 let (rc, _buf) = {
-                    AIO_MGR
-                        .lock()
-                        .unwrap()
-                        .read(fd, offset, block_size as usize, None)
+                    AIO_MGR.lock().unwrap().read(
+                        fd,
+                        offset,
+                        aligned_vec(block_size as usize).into_boxed_slice(),
+                        None,
+                    )
                 }
                 .await;
                 let written = rc.unwrap();

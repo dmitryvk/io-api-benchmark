@@ -12,7 +12,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     IoMethod,
-    io_data::{access_seq, buf_data},
+    io_data::{access_seq, aligned_vec, buf_data},
 };
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -87,7 +87,7 @@ impl IoMethod for DirectUring {
     fn read_file(&self, path: &std::path::Path, file_size: u64, sequence: crate::IoSequence) {
         assert_eq!(file_size % self.block_size as u64, 0);
         let mut bufs = (0..self.concurrency)
-            .map(|_| vec![0u8; self.block_size as usize])
+            .map(|_| aligned_vec(self.block_size as usize))
             .collect_vec();
         let mut available_buf_idx = (0..self.concurrency as usize).collect_vec();
         let num_pages = file_size / self.block_size as u64;

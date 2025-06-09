@@ -14,6 +14,8 @@ use crate::{
 pub struct RunCommand {
     #[clap(long, value_parser, default_value = "benchmark.json")]
     pub settings_file: PathBuf,
+    #[clap(long, value_parser, default_value = "target/test_file")]
+    pub test_file: PathBuf,
     #[clap(long, value_parser, default_value = "target/report.json")]
     pub report_file: PathBuf,
 }
@@ -28,9 +30,9 @@ pub fn run_benchmark(run_command: &RunCommand) {
             IoSequence::Random,
             // IoSequence::Sequential,
         ] {
-            let path = Path::new("target").join("test_file");
+            let path = &run_command.test_file;
             let write_duration =
-                measure_write_file(&path, settings.file_size, m, IoSequence::Sequential);
+                measure_write_file(path, settings.file_size, m, IoSequence::Sequential);
             let write_tput_mbps =
                 settings.file_size as f64 / 1024.0 / 1024.0 / write_duration.as_secs_f64();
             println!(
@@ -38,7 +40,7 @@ pub fn run_benchmark(run_command: &RunCommand) {
                 d = write_duration.as_secs_f64()
             );
             let read_duration =
-                measure_read_file(&path, settings.file_size, m, IoSequence::Sequential);
+                measure_read_file(path, settings.file_size, m, IoSequence::Sequential);
             let read_tput_mbps =
                 settings.file_size as f64 / 1024.0 / 1024.0 / read_duration.as_secs_f64();
             println!(
@@ -51,7 +53,7 @@ pub fn run_benchmark(run_command: &RunCommand) {
                 write_tput_mbps,
                 read_tput_mbps,
             });
-            remove_file_maybe(&path);
+            remove_file_maybe(path);
         }
     }
 
