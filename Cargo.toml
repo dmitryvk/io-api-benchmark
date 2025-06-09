@@ -6,10 +6,13 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.5.39", features = ["derive"] }
 crc = "3.3.0"
+float-ord = "0.3.2"
 futures = "0.3.31"
 io-uring = "0.7.7"
+itertools = "0.14.0"
 libaio-futures = "0.2.3"
 libc = "0.2.172"
+minijinja = "2.10.2"
 rand = "0.9.1"
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.140"
