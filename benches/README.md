@@ -1,0 +1,6 @@
+- [laptop ssd ext4](laptop-ssd-ext4/report.html)
+- [hdd ext4](hdd-ext4/report-hdd.html)
+- [aws ebs gp3](cloud/report-aws-m6i-ebs.html)
+- [aws local instance ssd ext4](cloud/io-benchmarks-aws-i7i-local-ext4.html)
+- [aws local instance ssd xfs](cloud/io-benchmarks-aws-i7i-local-xfs.html)
+- [digital ocean smallest ssd](cloud/io-benchmarks-do-120gb.html)

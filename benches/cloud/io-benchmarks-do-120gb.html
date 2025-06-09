@@ -1,0 +1,1334 @@
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>IO Benchmark</title>
+  <style type="text/css">
+    table {
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid lightgray;
+    }
+    td.number_cell {
+      text-align: right
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>Method</th>
+      <th>Block Size</th>
+      <th>Concurrency</th>
+      <th>Sequence</th>
+      <th>Write, MiB/s</th>
+      <th>Read, MiB/s</th>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">322</td>
+      <td class="number_cell">567</td>
+    </tr>
+    
+    <tr>
+      <td>direct</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">183</td>
+      <td class="number_cell">466</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">495</td>
+      <td class="number_cell">116</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">410</td>
+      <td class="number_cell">169</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">376</td>
+      <td class="number_cell">184</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">422</td>
+      <td class="number_cell">78</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">326</td>
+      <td class="number_cell">97</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">291</td>
+      <td class="number_cell">120</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">310</td>
+      <td class="number_cell">98</td>
+    </tr>
+    
+    <tr>
+      <td>direct</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">82</td>
+      <td class="number_cell">99</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">277</td>
+      <td class="number_cell">498</td>
+    </tr>
+    
+    <tr>
+      <td>direct</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">195</td>
+      <td class="number_cell">414</td>
+    </tr>
+    
+    <tr>
+      <td>direct</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">197</td>
+      <td class="number_cell">380</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">409</td>
+      <td class="number_cell">138</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">383</td>
+      <td class="number_cell">155</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">388</td>
+      <td class="number_cell">102</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">410</td>
+      <td class="number_cell">72</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">363</td>
+      <td class="number_cell">118</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">284</td>
+      <td class="number_cell">150</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">65536</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">269</td>
+      <td class="number_cell">73</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">296</td>
+      <td class="number_cell">1228</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">521</td>
+      <td class="number_cell">122</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">300</td>
+      <td class="number_cell">263</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">439</td>
+      <td class="number_cell">113</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">442</td>
+      <td class="number_cell">102</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">414</td>
+      <td class="number_cell">108</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">313</td>
+      <td class="number_cell">138</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">272</td>
+      <td class="number_cell">100</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">253</td>
+      <td class="number_cell">1141</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">552</td>
+      <td class="number_cell">122</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">449</td>
+      <td class="number_cell">190</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">260</td>
+      <td class="number_cell">361</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">426</td>
+      <td class="number_cell">103</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">316</td>
+      <td class="number_cell">201</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">397</td>
+      <td class="number_cell">112</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">32768</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">241</td>
+      <td class="number_cell">112</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">271</td>
+      <td class="number_cell">1849</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">291</td>
+      <td class="number_cell">851</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">475</td>
+      <td class="number_cell">154</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">466</td>
+      <td class="number_cell">145</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">412</td>
+      <td class="number_cell">193</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">308</td>
+      <td class="number_cell">249</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">271</td>
+      <td class="number_cell">144</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">313</td>
+      <td class="number_cell">81</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">275</td>
+      <td class="number_cell">1998</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">269</td>
+      <td class="number_cell">1171</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">306</td>
+      <td class="number_cell">377</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">388</td>
+      <td class="number_cell">187</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">406</td>
+      <td class="number_cell">115</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">262</td>
+      <td class="number_cell">253</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">376</td>
+      <td class="number_cell">101</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">16384</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">349</td>
+      <td class="number_cell">112</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">278</td>
+      <td class="number_cell">1562</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">254</td>
+      <td class="number_cell">1458</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">287</td>
+      <td class="number_cell">380</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">254</td>
+      <td class="number_cell">396</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">390</td>
+      <td class="number_cell">169</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">448</td>
+      <td class="number_cell">110</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">433</td>
+      <td class="number_cell">81</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">338</td>
+      <td class="number_cell">159</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">248</td>
+      <td class="number_cell">1582</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">267</td>
+      <td class="number_cell">1230</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">279</td>
+      <td class="number_cell">608</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">280</td>
+      <td class="number_cell">466</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">534</td>
+      <td class="number_cell">141</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">416</td>
+      <td class="number_cell">183</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">387</td>
+      <td class="number_cell">119</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">8192</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">347</td>
+      <td class="number_cell">59</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">250</td>
+      <td class="number_cell">864</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">265</td>
+      <td class="number_cell">849</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">284</td>
+      <td class="number_cell">547</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">264</td>
+      <td class="number_cell">540</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">332</td>
+      <td class="number_cell">275</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">427</td>
+      <td class="number_cell">135</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">451</td>
+      <td class="number_cell">78</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">380</td>
+      <td class="number_cell">137</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">271</td>
+      <td class="number_cell">1057</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">258</td>
+      <td class="number_cell">803</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">259</td>
+      <td class="number_cell">607</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">284</td>
+      <td class="number_cell">446</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">297</td>
+      <td class="number_cell">255</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">405</td>
+      <td class="number_cell">146</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">336</td>
+      <td class="number_cell">147</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">4096</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">383</td>
+      <td class="number_cell">85</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">276</td>
+      <td class="number_cell">200</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">365</td>
+      <td class="number_cell">80</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell"></td>
+      <td>Random</td>
+      <td class="number_cell">335</td>
+      <td class="number_cell">95</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">168</td>
+      <td class="number_cell">255</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">13</td>
+      <td class="number_cell">48</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">11</td>
+      <td class="number_cell">33</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">14</td>
+      <td class="number_cell">30</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Random</td>
+      <td class="number_cell">11</td>
+      <td class="number_cell">25</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">332</td>
+      <td class="number_cell">117</td>
+    </tr>
+    
+    <tr>
+      <td>buffered</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell"></td>
+      <td>Sequential</td>
+      <td class="number_cell">348</td>
+      <td class="number_cell">76</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">262</td>
+      <td class="number_cell">155</td>
+    </tr>
+    
+    <tr>
+      <td>buffered_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">186</td>
+      <td class="number_cell">207</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">14</td>
+      <td class="number_cell">23</td>
+    </tr>
+    
+    <tr>
+      <td>direct_async</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">15</td>
+      <td class="number_cell">13</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">8</td>
+      <td class="number_cell">17</td>
+    </tr>
+    
+    <tr>
+      <td>direct_uring</td>
+      <td class="number_cell">1024</td>
+      <td class="number_cell">128</td>
+      <td>Sequential</td>
+      <td class="number_cell">10</td>
+      <td class="number_cell">13</td>
+    </tr>
+    
+    <!-- 
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 567.0215206949277, "sequence": "Random", "write_tput_mbps": 322.4650485928124}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "direct"}, "read_tput_mbps": 466.1161812716652, "sequence": "Random", "write_tput_mbps": 183.2238835206494}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "buffered"}, "read_tput_mbps": 116.12078410044178, "sequence": "Random", "write_tput_mbps": 495.65156748065687}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "buffered"}, "read_tput_mbps": 169.13642001609125, "sequence": "Random", "write_tput_mbps": 410.82178002991986}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 184.9994101264902, "sequence": "Random", "write_tput_mbps": 376.80103609451896}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 78.66049911160893, "sequence": "Random", "write_tput_mbps": 422.1495886737661}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 97.69043345320118, "sequence": "Random", "write_tput_mbps": 326.5367814576619}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 120.70407387885967, "sequence": "Random", "write_tput_mbps": 291.376646458171}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 98.0793708350576, "sequence": "Random", "write_tput_mbps": 310.4455613165466}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "direct"}, "read_tput_mbps": 99.58940316092472, "sequence": "Random", "write_tput_mbps": 82.32657171071433}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 498.04201784400504, "sequence": "Sequential", "write_tput_mbps": 277.27199707062135}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "direct"}, "read_tput_mbps": 414.6064196161544, "sequence": "Sequential", "write_tput_mbps": 195.6462013209744}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "direct"}, "read_tput_mbps": 380.72247783159344, "sequence": "Sequential", "write_tput_mbps": 197.85026199710393}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "buffered"}, "read_tput_mbps": 138.3166682099421, "sequence": "Sequential", "write_tput_mbps": 409.4409757454427}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 155.46065554301873, "sequence": "Sequential", "write_tput_mbps": 383.9364446966906}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "type": "buffered"}, "read_tput_mbps": 102.96002776085489, "sequence": "Sequential", "write_tput_mbps": 388.3885431339112}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 72.60521370983331, "sequence": "Sequential", "write_tput_mbps": 410.9293808741472}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 118.20712723446148, "sequence": "Sequential", "write_tput_mbps": 363.1942736611649}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 150.11420624308775, "sequence": "Sequential", "write_tput_mbps": 284.9773026042486}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 65536, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 73.45966255780604, "sequence": "Sequential", "write_tput_mbps": 269.09876165269907}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1228.6248551038557, "sequence": "Random", "write_tput_mbps": 296.13417380407094}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 122.38218670364812, "sequence": "Random", "write_tput_mbps": 521.5127131394958}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 263.30273451800133, "sequence": "Random", "write_tput_mbps": 300.78637472312937}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "type": "buffered"}, "read_tput_mbps": 113.64131133127574, "sequence": "Random", "write_tput_mbps": 439.3459868181101}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 102.041641998299, "sequence": "Random", "write_tput_mbps": 442.22107663931024}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "type": "buffered"}, "read_tput_mbps": 108.47513501005984, "sequence": "Random", "write_tput_mbps": 414.742755757139}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 138.51297450545235, "sequence": "Random", "write_tput_mbps": 313.2816139164431}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 100.87477310781064, "sequence": "Random", "write_tput_mbps": 272.61619014904295}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1141.7716136898166, "sequence": "Sequential", "write_tput_mbps": 253.4412068870272}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 122.5462396497757, "sequence": "Sequential", "write_tput_mbps": 552.6856179427417}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "type": "buffered"}, "read_tput_mbps": 190.7203158862448, "sequence": "Sequential", "write_tput_mbps": 449.6088736493337}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 361.20468954193086, "sequence": "Sequential", "write_tput_mbps": 260.4258291501129}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "type": "buffered"}, "read_tput_mbps": 103.86320834412932, "sequence": "Sequential", "write_tput_mbps": 426.93187817249367}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 201.28690170163432, "sequence": "Sequential", "write_tput_mbps": 316.3438410309523}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 112.39481177013889, "sequence": "Sequential", "write_tput_mbps": 397.91292185531125}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 32768, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 112.85862831727184, "sequence": "Sequential", "write_tput_mbps": 241.77767488794495}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1849.659502251426, "sequence": "Random", "write_tput_mbps": 271.9809078582039}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 851.1240026696835, "sequence": "Random", "write_tput_mbps": 291.2991908409417}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 154.60899854737718, "sequence": "Random", "write_tput_mbps": 475.1609008032053}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 145.4738660370673, "sequence": "Random", "write_tput_mbps": 466.62773921966334}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "type": "buffered"}, "read_tput_mbps": 193.89771210076495, "sequence": "Random", "write_tput_mbps": 412.688060901512}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 249.9563528364739, "sequence": "Random", "write_tput_mbps": 308.3170625627565}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 144.599851716693, "sequence": "Random", "write_tput_mbps": 271.13226247782234}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "type": "buffered"}, "read_tput_mbps": 81.26378188109184, "sequence": "Random", "write_tput_mbps": 313.8609034827921}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1998.4384077379536, "sequence": "Sequential", "write_tput_mbps": 275.54641925910516}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1171.2113540742298, "sequence": "Sequential", "write_tput_mbps": 269.6210079673956}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 377.330792572511, "sequence": "Sequential", "write_tput_mbps": 306.3521517937001}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 187.00809119580475, "sequence": "Sequential", "write_tput_mbps": 388.95377951325446}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 115.10697324923385, "sequence": "Sequential", "write_tput_mbps": 406.9074834164537}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 253.9623735299621, "sequence": "Sequential", "write_tput_mbps": 262.2867876850255}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "type": "buffered"}, "read_tput_mbps": 101.54380892331388, "sequence": "Sequential", "write_tput_mbps": 376.0589187490508}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 16384, "type": "buffered"}, "read_tput_mbps": 112.0169348882418, "sequence": "Sequential", "write_tput_mbps": 349.5696634947107}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1562.5971091538418, "sequence": "Random", "write_tput_mbps": 278.4036743090527}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1458.7038379352684, "sequence": "Random", "write_tput_mbps": 254.82725896187705}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 380.83245499881394, "sequence": "Random", "write_tput_mbps": 287.4954967929484}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 396.1172868254667, "sequence": "Random", "write_tput_mbps": 254.53813556168956}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 169.7033337005466, "sequence": "Random", "write_tput_mbps": 390.9969805044354}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "type": "buffered"}, "read_tput_mbps": 110.54989115378632, "sequence": "Random", "write_tput_mbps": 448.87243227478496}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "type": "buffered"}, "read_tput_mbps": 81.59579528299348, "sequence": "Random", "write_tput_mbps": 433.3924097976061}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 159.70920228302907, "sequence": "Random", "write_tput_mbps": 338.0356995329648}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1582.6418023253434, "sequence": "Sequential", "write_tput_mbps": 248.6267601072591}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1230.6362510558715, "sequence": "Sequential", "write_tput_mbps": 267.85701879390314}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 608.097077681651, "sequence": "Sequential", "write_tput_mbps": 279.9442081691027}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 466.1042507119997, "sequence": "Sequential", "write_tput_mbps": 280.2945975929478}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 141.36838794592222, "sequence": "Sequential", "write_tput_mbps": 534.8794067157736}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 183.76122682934417, "sequence": "Sequential", "write_tput_mbps": 416.5898850283519}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "type": "buffered"}, "read_tput_mbps": 119.07899833504024, "sequence": "Sequential", "write_tput_mbps": 387.4486728884063}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 8192, "type": "buffered"}, "read_tput_mbps": 59.12161275837309, "sequence": "Sequential", "write_tput_mbps": 347.13567183737547}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 864.3321267504439, "sequence": "Random", "write_tput_mbps": 250.36278741471955}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 849.1726308715503, "sequence": "Random", "write_tput_mbps": 265.14963732211163}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 547.6863556845062, "sequence": "Random", "write_tput_mbps": 284.5610499744293}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 540.7762852023709, "sequence": "Random", "write_tput_mbps": 264.53811965680404}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 275.3307867630362, "sequence": "Random", "write_tput_mbps": 332.46445393304344}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "type": "buffered"}, "read_tput_mbps": 135.60573269717702, "sequence": "Random", "write_tput_mbps": 427.55365665615585}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "type": "buffered"}, "read_tput_mbps": 78.53322793208841, "sequence": "Random", "write_tput_mbps": 451.3553610852586}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 137.14706799867457, "sequence": "Random", "write_tput_mbps": 380.8281584340346}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 1057.830362818955, "sequence": "Sequential", "write_tput_mbps": 271.96532748035617}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 803.1201871807123, "sequence": "Sequential", "write_tput_mbps": 258.8245570499279}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 607.0576119584734, "sequence": "Sequential", "write_tput_mbps": 259.96953356105837}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 446.0862633879331, "sequence": "Sequential", "write_tput_mbps": 284.91359646835707}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 255.60356194266967, "sequence": "Sequential", "write_tput_mbps": 297.1574806869924}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "type": "buffered"}, "read_tput_mbps": 146.94533881251633, "sequence": "Sequential", "write_tput_mbps": 405.7320055343494}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 147.3586226494534, "sequence": "Sequential", "write_tput_mbps": 336.86032852045633}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 4096, "type": "buffered"}, "read_tput_mbps": 85.00869312510571, "sequence": "Sequential", "write_tput_mbps": 383.78095049822696}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 200.90480429403132, "sequence": "Random", "write_tput_mbps": 276.84710947728826}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "type": "buffered"}, "read_tput_mbps": 80.96837288377417, "sequence": "Random", "write_tput_mbps": 365.0600688660722}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "type": "buffered"}, "read_tput_mbps": 95.56803484779682, "sequence": "Random", "write_tput_mbps": 335.11870967651396}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 255.34831178468548, "sequence": "Random", "write_tput_mbps": 168.59019185069917}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 48.6858803223887, "sequence": "Random", "write_tput_mbps": 13.140094995047928}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 33.85096278309344, "sequence": "Random", "write_tput_mbps": 11.759872190092878}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 30.02977072876509, "sequence": "Random", "write_tput_mbps": 14.710046283018478}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 25.217319868066262, "sequence": "Random", "write_tput_mbps": 11.301964481330351}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "type": "buffered"}, "read_tput_mbps": 117.59677355685729, "sequence": "Sequential", "write_tput_mbps": 332.78857922842263}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "type": "buffered"}, "read_tput_mbps": 76.18105862452481, "sequence": "Sequential", "write_tput_mbps": 348.81117331134965}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 155.557242001308, "sequence": "Sequential", "write_tput_mbps": 262.78025401176967}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "buffered_uring"}, "read_tput_mbps": 207.14324414931997, "sequence": "Sequential", "write_tput_mbps": 186.94899922637}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 23.212705610064916, "sequence": "Sequential", "write_tput_mbps": 14.964774283948431}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_async"}, "read_tput_mbps": 13.5936925666655, "sequence": "Sequential", "write_tput_mbps": 15.131458959705226}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 17.318850686549805, "sequence": "Sequential", "write_tput_mbps": 8.363362823888789}</td>
+    </tr>
+    
+    <tr>
+      <td>{"method": {"block_size": 1024, "concurrency": 128, "type": "direct_uring"}, "read_tput_mbps": 13.88534701650044, "sequence": "Sequential", "write_tput_mbps": 10.310875496493184}</td>
+    </tr>
+     -->
+  </table>
+</body>
+
+</html>
